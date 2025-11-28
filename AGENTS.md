@@ -1,10 +1,33 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-All runnable code lives in `Tarea 4 - RL - Q-Learning (1).ipynb`, which contains the environment setup, agent logic, and experiment cells. Keep supporting instructions in `tarea4-IA-2025 (1).pdf` and evaluation criteria in `rubrica-tarea-IA-RL (1).xlsx`; never overwrite these source documents—drop new references beside them. Configuration assets such as `.gitignore` and notebook checkpoints belong at the repository root so the notebook can import resources using relative paths without extra sys.path tweaks.
+This repository contains two main notebooks:
+- `Tarea 4 - RL - Q-Learning (1).ipynb` — Original template with questions
+- `Tarea 4 - RL - Q-Learning - Solucion.ipynb` — **Working notebook with solutions** (use this one)
+
+Supporting materials: `tarea4-IA-2025 (1).pdf` (instructions), `rubrica-tarea-IA-RL (1).xlsx` (rubric), and `requirements.txt` (dependencies). Configuration assets like `.gitignore` belong at the repository root.
 
 ## Build, Test, and Development Commands
-Use `jupyter lab "Tarea 4 - RL - Q-Learning (1).ipynb"` for interactive development; keep kernels on Python 3.12 to match the existing metadata. Run the full pipeline headlessly with `jupyter nbconvert --to notebook --execute "Tarea 4 - RL - Q-Learning (1).ipynb" --output build/agent-run.ipynb` to catch regressions before committing. Export polished artefacts for sharing via `jupyter nbconvert --to html "Tarea 4 - RL - Q-Learning (1).ipynb" --output build/report.html`.
+```bash
+# Setup environment (first time only)
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# Interactive development
+jupyter lab "Tarea 4 - RL - Q-Learning - Solucion.ipynb"
+
+# Run notebook programmatically (from VS Code or terminal)
+# Note: Use Python 3.13+ (current: 3.13.7)
+.venv/bin/jupyter nbconvert --to notebook --execute \
+    "Tarea 4 - RL - Q-Learning - Solucion.ipynb" \
+    --output "Tarea 4 - RL - Ejecutado.ipynb"
+
+# Export to HTML for sharing
+.venv/bin/jupyter nbconvert --to html \
+    "Tarea 4 - RL - Q-Learning - Solucion.ipynb" \
+    --output report.html
+```
 
 ## Coding Style & Naming Conventions
 Follow PEP 8 with four-space indentation, `snake_case` for functions, and `UPPER_SNAKE_CASE` for constants such as `ZOMBIE` or `BLOCK`. Keep emoji tokens that define the grid so renders stay consistent across cells. Prefer pure Python and NumPy utilities already imported; new helpers should accept deterministic seeds and include short docstrings describing state transitions.
